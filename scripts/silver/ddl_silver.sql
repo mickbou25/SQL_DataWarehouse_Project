@@ -21,7 +21,8 @@ CREATE TABLE silver.crm_cust_info (
     cst_lastname        NVARCHAR(50),    -- Last name
     cst_marital_status  NVARCHAR(50),    -- Marital status (e.g., Single, Married)
     cst_gndr            NVARCHAR(50),    -- Gender
-    cst_create_date     DATE             -- Date customer record was created
+    cst_create_date     DATE,             -- Date customer record was created
+    dwh_create_date     DATETIME2 DEFAULT GETDATE() -- Date the data was added to the DWH
 );
 GO
 
@@ -37,7 +38,8 @@ CREATE TABLE silver.crm_prd_info (
     prd_cost     INT,             -- Product cost (in cents or dollars)
     prd_line     NVARCHAR(50),    -- Product line/category
     prd_start_dt DATETIME,        -- Product availability start date
-    prd_end_dt   DATETIME         -- Product availability end date
+    prd_end_dt   DATETIME,         -- Product availability end date
+    dwh_create_date     DATETIME2 DEFAULT GETDATE() -- Date the data was added to the DWH
 );
 GO
 
@@ -55,7 +57,8 @@ CREATE TABLE silver.crm_sales_details (
     sls_due_dt   INT,             -- Due date (consider changing to DATE or DATETIME)
     sls_sales    INT,             -- Sales amount
     sls_quantity INT,             -- Quantity sold
-    sls_price    INT              -- Unit price
+    sls_price    INT,              -- Unit price
+    dwh_create_date     DATETIME2 DEFAULT GETDATE() -- Date the data was added to the DWH
 );
 GO
 
@@ -66,7 +69,8 @@ GO
 
 CREATE TABLE silver.erp_loc_a101 (
     cid    NVARCHAR(50),    -- Customer or location ID
-    cntry  NVARCHAR(50)     -- Country code or name
+    cntry  NVARCHAR(50),     -- Country code or name
+    dwh_create_date     DATETIME2 DEFAULT GETDATE() -- Date the data was added to the DWH
 );
 GO
 
@@ -78,7 +82,8 @@ GO
 CREATE TABLE silver.erp_cust_az12 (
     cid    NVARCHAR(50),    -- Customer ID
     bdate  DATE,            -- Birthdate
-    gen    NVARCHAR(50)     -- Gender
+    gen    NVARCHAR(50),     -- Gender
+    dwh_create_date     DATETIME2 DEFAULT GETDATE() -- Date the data was added to the DWH
 );
 GO
 
@@ -91,6 +96,7 @@ CREATE TABLE silver.erp_px_cat_g1v2 (
     id           NVARCHAR(50),    -- Product or category ID
     cat          NVARCHAR(50),    -- Category name
     subcat       NVARCHAR(50),    -- Subcategory name
-    maintenance  NVARCHAR(50)     -- Maintenance status or notes
+    maintenance  NVARCHAR(50),     -- Maintenance status or notes
+    dwh_create_date     DATETIME2 DEFAULT GETDATE() -- Date the data was added to the DWH
 );
 GO
